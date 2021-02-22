@@ -75,6 +75,16 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Link",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Link"
+                }
+              }
+            }
+          },
           "302": {
             "description": "Redirect"
           },

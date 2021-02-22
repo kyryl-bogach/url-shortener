@@ -30,6 +30,10 @@ getLink = async (req, res) => {
         return res.sendStatus(404)
     }
 
+    if (req.headers['accept'] === 'application/json') {
+        return res.status(200).json(link)
+    }
+
     return res.redirect(link.value)
 }
 
