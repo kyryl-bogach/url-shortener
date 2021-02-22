@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// const connectionString = 'mongodb://mongo/link';
-const connectionString = 'mongodb://localhost/link';
+const connectionString = 'mongodb://mongo/link';
 
 mongoose.connect(connectionString, { useNewUrlParser: true }).catch((e) => {
   console.error('Connection error', e.message);
