@@ -1,0 +1,170 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Bogach URL shortener",
+    "description": "A simple lightweight dockerized url shortener"
+  },
+  "servers": [
+    {
+      "url": "https://link.bogach.es"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Returns all links",
+        "operationId": "findLinks",
+        "responses": {
+          "200": {
+            "description": "Links list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Link"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a link",
+        "operationId": "addLink",
+        "requestBody": {
+          "description": "Link data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Link"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Link created"
+          },
+          "400": {
+            "description": "[key] and [value] are required"
+          },
+          "409": {
+            "description": "Link with that key already exists"
+          }
+        }
+      }
+    },
+    "/{key}": {
+      "get": {
+        "description": "Redirects to the value of the Link with that key",
+        "operationId": "findKey",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Key of Link",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "google"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect"
+          },
+          "404": {
+            "description": "Link not found"
+          }
+        }
+      },
+      "put": {
+        "description": "Updates link",
+        "operationId": "updateLink",
+        "requestBody": {
+          "description": "Link data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "https://google.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Key of Link",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "google"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Link updated"
+          },
+          "400": {
+            "description": "[value] is required"
+          },
+          "404": {
+            "description": "Link not found"
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes link",
+        "operationId": "deleteLink",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Key of Link",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "google"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Link deleted"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Link": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "google"
+          },
+          "value": {
+            "type": "string",
+            "example": "https://google.com"
+          }
+        }
+      }
+    }
+  }
+}
