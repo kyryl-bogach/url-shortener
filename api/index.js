@@ -16,7 +16,8 @@ app.use(bodyParser.json())
 app.use(cors())
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.get('/swagger.json', (req, res) => res.json(swaggerDocument));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', linkRouter)
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
