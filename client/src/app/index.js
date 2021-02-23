@@ -6,19 +6,27 @@ import { LinksList, LinksInsert, LinksUpdate } from '../pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+import styled from "styled-components";
+
+const Container = styled.div.attrs({
+    className: 'container',
+})``
+
 function App() {
     return (
         <Router>
-            <NavBar />
-            <Switch>
-                <Route path="/links/list" exact component={LinksList} />
-                <Route path="/links/create" exact component={LinksInsert} />
-                <Route
-                    path="/links/update/:key"
-                    exact
-                    component={LinksUpdate}
-                />
-            </Switch>
+            <Container>
+                <NavBar/>
+                <Switch>
+                    <Route path="/" exact component={LinksList}/>
+                    <Route path="/create" exact component={LinksInsert}/>
+                    <Route
+                        path="/update/:key"
+                        exact
+                        component={LinksUpdate}
+                    />
+                </Switch>
+            </Container>
         </Router>
     )
 }

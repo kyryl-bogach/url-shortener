@@ -54,18 +54,14 @@ class LinksUpdate extends Component {
         const { key, value } = this.state
         const payload = { value }
 
-        await api.updateLink(key, payload).then(res => {
-            window.alert(`Link updated successfully`)
-            this.setState({
-                key: '',
-                value: '',
-            })
+        await api.updateLink(key, payload).then(() => {
+            window.location.href = `/`
         })
     }
 
     componentDidMount = async () => {
-        const { id } = this.state
-        const link = await api.getLink(id)
+        const { key } = this.state
+        const link = await api.getLink(key)
 
         this.setState({
             key: link.data.key,
@@ -87,7 +83,7 @@ class LinksUpdate extends Component {
                 />
 
                 <Button onClick={this.handleUpdateLink}>Update Link</Button>
-                <CancelButton href={'/link/list'}>Cancel</CancelButton>
+                <CancelButton href={'/'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

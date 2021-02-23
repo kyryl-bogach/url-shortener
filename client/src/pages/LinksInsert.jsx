@@ -68,12 +68,10 @@ class LinksInsert extends Component {
         const { key, value } = this.state
         const payload = { key, value }
 
-        await api.insertLink(payload).then(res => {
-            window.alert(`Link inserted successfully`)
-            this.setState({
-                key: '',
-                value: '',
-            })
+        await api.insertLink(payload).then(() => {
+            window.location.href = `/`
+        }).catch(() => {
+            alert('error')
         })
     }
 
@@ -98,7 +96,7 @@ class LinksInsert extends Component {
                 />
 
                 <Button onClick={this.handleIncludeLink}>Add Link</Button>
-                <CancelButton href={'/links/list'}>Cancel</CancelButton>
+                <CancelButton href={'/'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

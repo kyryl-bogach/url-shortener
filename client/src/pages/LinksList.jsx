@@ -23,8 +23,7 @@ const Delete = styled.div`
 class Updated extends Component {
     updateUser = event => {
         event.preventDefault()
-
-        window.location.href = `/links/update/${this.props.linkKey}`
+        window.location.href = `/update/${this.props.linkKey}`
     }
 
     render() {
@@ -41,8 +40,7 @@ class Deleted extends Component {
                 `Do tou want to delete the link ${this.props.linkKey} permanently?`,
             )
         ) {
-            api.deleteLink(this.props.linkKey)
-            window.location.reload()
+            api.deleteLink(this.props.linkKey).then(() => window.location.reload())
         }
     }
 
@@ -80,19 +78,33 @@ class LinksList extends Component {
                 Header: 'KEY',
                 accessor: 'key',
                 filterable: true,
+                Cell: function (props) {
+                    return (
+                        <a href={`${global.API_URL}/${props.original.key}`}>
+                            {props.original.key}
+                        </a>
+                    )
+                },
             },
             {
                 Header: 'Value',
                 accessor: 'value',
                 filterable: true,
+                Cell: function (props) {
+                    return (
+                        <a href={props.original.value}>
+                            {props.original.value}
+                        </a>
+                    )
+                },
             },
             {
                 Header: '',
                 accessor: '',
-                Cell: function(props) {
+                Cell: function (props) {
                     return (
                         <span>
-                            <Deleted linkKey={props.original.key} />
+                            <Updated linkKey={props.original.key}/>
                         </span>
                     )
                 },
@@ -100,34 +112,26 @@ class LinksList extends Component {
             {
                 Header: '',
                 accessor: '',
-                Cell: function(props) {
+                Cell: function (props) {
                     return (
                         <span>
-                            <Updated linkKey={props.original.key} />
+                            <Deleted linkKey={props.original.key}/>
                         </span>
                     )
                 },
             },
         ]
 
-        let showTable = true
-        console.log(links);
-        if (!links.length) {
-            showTable = false
-        }
-
         return (
             <Wrapper>
-                {showTable && (
-                    <ReactTable
-                        data={links}
-                        columns={columns}
-                        loading={isLoading}
-                        defaultPageSize={10}
-                        showPageSizeOptions={true}
-                        minRows={0}
-                    />
-                )}
+                <ReactTable
+                    data={links}
+                    columns={columns}
+                    loading={isLoading}
+                    defaultPageSize={10}
+                    showPageSizeOptions={true}
+                    minRows={0}
+                />
             </Wrapper>
         )
     }
