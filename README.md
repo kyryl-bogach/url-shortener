@@ -7,13 +7,10 @@ There is a admin panel build with React that allows uses the API.
 For example, if I want to share my CV, I can have a *profesional* link such as [link.bogach.es/cv](https://link.bogach.es/cv)
 
 ## Demo
-API: [link.bogach.es](https://link.bogach.es)
-
-Admin panel: [link.admin.bogach.es](https://link.admin.bogach.es)
-
-Swagger documentation: [link.bogach.es/swagger](https://link.bogach.es/swagger)
-
-Swagger json file: [link.bogach.es/swagger.json](https://link.bogach.es/swagger.json)
+- API: [link.bogach.es](https://link.bogach.es)
+- Admin panel: [link.admin.bogach.es](https://link.admin.bogach.es)
+- Swagger documentation: [link.bogach.es/swagger](https://link.bogach.es/swagger)
+- Swagger json file: [link.bogach.es/swagger.json](https://link.bogach.es/swagger.json)
 
 ## Run
 `make build` to build containers
