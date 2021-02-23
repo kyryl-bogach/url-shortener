@@ -1,7 +1,6 @@
 version: "3"
 
 services:
-
   mongo:
     image: mongo:3.6.22-xenial
     ports:
