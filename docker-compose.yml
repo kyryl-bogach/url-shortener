@@ -9,7 +9,7 @@ services:
     networks:
       - mern-app
     volumes:
-      - mongo-data:/data/db
+      - ./docker/mongo/data/db:/data/db
 
   api-server:
     image: api-server
@@ -33,7 +33,3 @@ services:
 networks:
   mern-app:
     driver: bridge
-
-volumes:
-  mongo-data:
-    driver: local
