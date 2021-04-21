@@ -13,8 +13,9 @@ For example, if I want to share my CV, I can have a *profesional* link such as [
 - Swagger json file: [link.bogach.es/swagger.json](https://link.bogach.es/swagger.json)
 
 ## Run
-`make build` to build containers
-`make run` to run containers with docker-compose
+- `make build` to build containers
+- `make run` to run containers with docker-compose
+- You should edit `docker-compose.yml` to specify the ports you need because every container uses `expose` by default.
 
 ---
 
