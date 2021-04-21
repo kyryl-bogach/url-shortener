@@ -4,7 +4,7 @@ services:
   mongo:
     image: mongo:3.6.22-xenial
     restart: always
-    ports:
+    expose:
       - "27017"
     networks:
       - mern-app
@@ -14,8 +14,8 @@ services:
   api-server:
     image: api-server
     restart: always
-    ports:
-      - "5000:5000"
+    expose:
+      - "5000"
     networks:
       - mern-app
     depends_on:
@@ -25,8 +25,8 @@ services:
     image: react-app
     restart: always
     stdin_open: true
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     networks:
       - mern-app
 
