@@ -5,7 +5,7 @@ services:
     image: mongo:3.6.22-xenial
     restart: always
     ports:
-      - "27017:27017"
+      - "27017"
     networks:
       - mern-app
     volumes:
