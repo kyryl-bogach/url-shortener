@@ -19,4 +19,4 @@ For example, if I want to share my CV, I can have a *profesional* link such as [
 
 ---
 
-**NOTE:** This is a development configuration where the react app is being served by a separate container. We would also want to create a production version where we build a static version of the react site and serve it with something like nginx.
+**NOTE:** The default configuration is a development environment. Use `client/Dockerfile.production` to a production environment. Bear in mind that, in order to do this, the ports of the `react-app` image of the `docker-compose.yml` should be `80:80`.
